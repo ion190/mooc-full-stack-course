@@ -48,13 +48,18 @@ const App = () => {
         <button onClick={handleNeutralBtn}>neutral</button>
         <button onClick={handleBadBtn}>bad</button>
       </div>
-      <Statistics
-        good={good}
-        neutral={neutral}
-        bad={bad}
-        average={average}
-        all={all}
-      />
+
+      {all > 0 ? (
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          average={average}
+          all={all}
+        />
+      ) : (
+        <p>No feedback given</p>
+      )}
     </>
   );
 };
