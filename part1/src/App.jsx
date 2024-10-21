@@ -1,59 +1,36 @@
+import { useState } from "react";
+
 const App = () => {
-  const course = {
-    name: "Half Stack application development",
-    parts: [
-      {
-        name: "Fundamentals of React",
-        exercises: 10,
-      },
-      {
-        name: "Using props to pass data",
-        exercises: 7,
-      },
-      {
-        name: "State of a component",
-        exercises: 14,
-      },
-    ],
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const handleGoodBtn = () => {
+    setGood(good + 1);
   };
 
-  const Header = (props) => {
-    return <p>{props.course}</p>;
+  const handleNeutralBtn = () => {
+    setNeutral(neutral + 1);
   };
 
-  const Part = (props) => {
-    return (
-      <p>
-        {props.part} has {props.exercises} exercise
-      </p>
-    );
-  };
-
-  const Content = (props) => {
-    return (
-      <>
-        <Part part={props.parts[0].name} exercises={props.parts[0].exercises} />
-        <Part part={props.parts[1].name} exercises={props.parts[1].exercises} />
-        <Part part={props.parts[2].name} exercises={props.parts[2].exercises} />
-      </>
-    );
-  };
-
-  const Total = (props) => {
-    return <p>Total exercise is {props.totalExercises}</p>;
+  const handleBadBtn = () => {
+    setBad(bad + 1);
   };
 
   return (
     <>
-      <Header course={course.name} />
-      <Content parts={course.parts} />
-      <Total
-        totalExercises={
-          course.parts[0]["exercises"] +
-          course.parts[1]["exercises"] +
-          course.parts[2]["exercises"]
-        }
-      />
+      <div>give feedback</div>
+      <div>
+        <button onClick={handleGoodBtn}>good</button>
+        <button onClick={handleNeutralBtn}>neutral</button>
+        <button onClick={handleBadBtn}>bad</button>
+      </div>
+      <div>statistics</div>
+      <div>
+        <p>good {good}</p>
+        <p>neutral {neutral}</p>
+        <p>bad {bad}</p>
+      </div>
     </>
   );
 };
