@@ -25,6 +25,7 @@ const App = () => {
   });
 
   const arrLength = anecdotes.length;
+  let [max, setMax] = useState(0);
 
   const handleBtn = () => {
     let randomNum = Math.ceil(Math.random() * arrLength) - 1;
@@ -35,14 +36,24 @@ const App = () => {
     const copy = { ...points };
     copy[selected] += 1;
     setPoints(copy);
+
+    let max = 0;
+    for (let i = 0; i < arrLength; i++) {
+      if (points[i] > max) max = i;
+    }
+    setMax(max);
   };
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {points[selected]} votes</p>
       <button onClick={handleVotes}>vote</button>
       <button onClick={handleBtn}>next anecdote</button>
+
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[max]}</p>
     </div>
   );
 };
