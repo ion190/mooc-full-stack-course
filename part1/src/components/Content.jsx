@@ -1,10 +1,7 @@
 import Part from "./Part";
 
 const Content = ({ parts }) => {
-  let totalEx = 0;
-  for (let i = 0; i < parts.length; i++) {
-    totalEx += Number(parts[i].exercises);
-  }
+  const totalEx = parts.reduce((s, p) => s + Number(p.exercises), 0);
 
   return (
     <>
